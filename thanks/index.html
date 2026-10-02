@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex">
+<title>Thanks!</title>
+<style>
+  :root { --bg:#FFF6D5; --card:#FFFCEF; --ink:#3A2E1F; --soft:#6B5838; --sun:#D9A62E; --line:#EBD58A; --glow:#FBE48C; --shadow:rgba(201,150,42,.22); }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#1E1710; --card:#2B2117; --ink:#FBF0CF; --soft:#CDB88A; --sun:#F0C75A; --line:#4D3C24; --glow:#4A3A1B; --shadow:rgba(0,0,0,.4); }
+  }
+  * { box-sizing:border-box; }
+  html,body { margin:0; min-height:100%; }
+  body {
+    min-height:100vh; min-height:100dvh; display:flex; align-items:center; justify-content:center;
+    padding:24px 16px; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    background-image:radial-gradient(circle at 50% 0%, var(--glow), transparent 60%);
+  }
+  main { width:100%; max-width:420px; text-align:center; background:var(--card); border:1px solid var(--line);
+    border-radius:24px; padding:36px 26px 30px; box-shadow:0 10px 30px var(--shadow); }
+  .big { font-size:64px; line-height:1; display:inline-block; animation:pop .6s cubic-bezier(.2,1.6,.4,1) both; }
+  h1 { font-family:Georgia,"Times New Roman",serif; font-size:28px; line-height:1.2; margin:18px 0 8px; }
+  p { font-size:17px; line-height:1.5; color:var(--soft); margin:0; }
+  .stars { margin-top:20px; font-size:22px; letter-spacing:4px; color:var(--sun); }
+  .stars .off { opacity:.25; }
+  small { display:block; margin-top:22px; color:var(--soft); font-size:13px; }
+  @keyframes pop { from { transform:scale(.3) rotate(-15deg); opacity:0; } to { transform:none; opacity:1; } }
+  @media (prefers-reduced-motion: reduce) { .big { animation:none; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="big" id="emoji" aria-hidden="true">&#128155;</div>
+  <h1 id="title">Thank you!</h1>
+  <p id="msg">Got your rating. See you tomorrow morning.</p>
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <small>You can close this tab. Nothing else to do.</small>
+</main>
+<script>
+(function () {
+  var lines = {
+    1: ["&#128517;", "Ouch. Got it.", "Noted, I'll do better tomorrow. Promise."],
+    2: ["&#128556;", "Got it, thank you.", "Not quite the vibe. I'll do better tomorrow."],
+    3: ["&#128578;", "Solid, noted.", "Decent, but I'm aiming for great. Tomorrow's picks will try harder."],
+    4: ["&#128516;", "Yay, noted!", "A good one. I'll keep the good stuff coming."],
+    5: ["&#129321;", "Noted: more like this!", "A perfect score. Tomorrow's lineup just got a lot more pressure."]
+  };
+  var s = parseInt(new URLSearchParams(location.search).get("s"), 10);
+  if (!(s >= 1 && s <= 5)) return; // keep the generic thank-you
+  var l = lines[s];
+  document.getElementById("emoji").innerHTML = l[0];
+  document.getElementById("title").textContent = l[1];
+  document.getElementById("msg").textContent = l[2];
+  var st = "";
+  for (var i = 1; i <= 5; i++) st += i <= s ? "★" : '<span class="off">★</span>';
+  document.getElementById("stars").innerHTML = st;
+  document.title = l[1];
+})();
+</script>
+</body>
+</html>

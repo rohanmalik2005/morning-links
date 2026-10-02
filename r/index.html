@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="robots" content="noindex"><meta name="referrer" content="no-referrer">
+<title>Saving your rating…</title>
+<style>:root{--bg:#FFF6D5;--ink:#3A2E1F;--soft:#6B5838}@media(prefers-color-scheme:dark){:root{--bg:#1E1710;--ink:#FBF0CF;--soft:#CDB88A}}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;text-align:center;padding:16px}p{font-size:17px;color:var(--soft);margin:0}</style>
+</head><body><p id="m">Saving your rating…</p>
+<noscript><p>Please enable JavaScript to save your rating.</p></noscript>
+<script>
+(function(){var q=new URLSearchParams(location.search),r=q.get("r")||"",s=q.get("s")||"";
+var ok=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(r)&&/^[1-5]$/.test(s);
+if(ok)location.replace("https://oorxfydfcvthpbeevqti.supabase.co/functions/v1/rate?r="+encodeURIComponent(r)+"&s="+encodeURIComponent(s));
+else document.getElementById("m").textContent="Hmm, that rating link looks incomplete. Try tapping a star in the email again.";})();
+</script></body></html>
